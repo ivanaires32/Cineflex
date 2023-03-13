@@ -15,7 +15,6 @@ export default function HomePage() {
 
         promise.then((res) => {
             setFilmes(res.data)
-            console.log(res.data)
         })
     }, [])
 
@@ -30,8 +29,8 @@ export default function HomePage() {
             <ListContainer>
 
                 {filmes.map((e) => (
-                    <Link to="/horarios">
-                        <MovieContainer>
+                    <Link to={`/horarios/${e.id}`} key={e.id}>
+                        <MovieContainer data-test="movie">
                             <img src={e.posterURL} alt="poster" />
                         </MovieContainer>
                     </Link>

@@ -1,42 +1,47 @@
+import axios from "axios"
+import { useEffect, useState } from "react"
+import { Link, useParams } from "react-router-dom"
 import styled from "styled-components"
 
-export default function SessionsPage() {
+export default function SessionsPage({ sessoes, setSessoes }) {
+    const [dias, setDias] = useState([])
+    const { idFilme } = useParams()
+
+    useEffect(() => {
+        const url = `https://mock-api.driven.com.br/api/v8/cineflex/movies/${idFilme}/showtimes`
+
+        const promise = axios.get(url)
+        promise.then((res) => {
+            setSessoes(res.data)
+            setDias(res.data.days)
+        })
+        promise.catch(res => console.log(res.response.data))
+    }, [])
 
     return (
         <PageContainer>
             Selecione o horário
-            <div>
-                <SessionContainer>
-                    Sexta - 03/03/2023
+            {dias.map((e) => (
+
+
+                <SessionContainer key={e.id} data-test="movie-day">
+                    {e.date}
                     <ButtonsContainer>
-                        <button>14:00</button>
-                        <button>15:00</button>
+                        <Link data-test="showtime" to={`/lugares/${e.showtimes[0].id}`}><button key={e.showtimes[0].id} >{e.showtimes[0].name}</button> </Link>
+                        <Link data-test="showtime" to={`/lugares/${e.showtimes[1].id}`}><button key={e.showtimes[1].id} >{e.showtimes[1].name}</button> </Link>
                     </ButtonsContainer>
                 </SessionContainer>
 
-                <SessionContainer>
-                    Sexta - 03/03/2023
-                    <ButtonsContainer>
-                        <button>14:00</button>
-                        <button>15:00</button>
-                    </ButtonsContainer>
-                </SessionContainer>
 
-                <SessionContainer>
-                    Sexta - 03/03/2023
-                    <ButtonsContainer>
-                        <button>14:00</button>
-                        <button>15:00</button>
-                    </ButtonsContainer>
-                </SessionContainer>
-            </div>
+            ))}
 
-            <FooterContainer>
+
+            <FooterContainer data-test="footer">
                 <div>
-                    <img src={"https://br.web.img2.acsta.net/pictures/22/05/16/17/59/5165498.jpg"} alt="poster" />
+                    <img src={sessoes.posterURL} alt="poster" />
                 </div>
                 <div>
-                    <p>Tudo em todo lugar ao mesmo tempo</p>
+                    <p>{sessoes.title}</p>
                 </div>
             </FooterContainer>
 

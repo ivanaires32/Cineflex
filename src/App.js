@@ -4,8 +4,15 @@ import SeatsPage from "./pages/SeatsPage/SeatsPage"
 import SessionsPage from "./pages/SessionsPage/SessionsPage"
 import SuccessPage from "./pages/SuccessPage/SuccessPage"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { useState } from "react"
 
 export default function App() {
+  const [name, setName] = useState("")
+  const [cpf, setCpf] = useState("")
+  const [sessoes, setSessoes] = useState([])
+  const [dia, setDia] = useState([])
+  const [horario, setHorario] = useState([])
+  const [disponivel, setDisponivel] = useState([])
   return (
     <>
       <BrowserRouter>
@@ -13,9 +20,12 @@ export default function App() {
 
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/horarios" element={<SessionsPage />} />
-          <Route path="/lugares" element={<SeatsPage />} />
-          <Route path="/finalizar" element={<SuccessPage />} />
+          <Route path="/horarios/:idFilme" element={<SessionsPage sessoes={sessoes} setSessoes={setSessoes} />} />
+          <Route path="/lugares/:idSessao" element={<SeatsPage
+            name={name} setName={setName} cpf={cpf} setCpf={setCpf} dia={dia} setDia={setDia} horario={horario} setHorario={setHorario}
+            disponivel={disponivel} setDisponivel={setDisponivel}
+          />} />
+          <Route path="/finalizar" element={<SuccessPage name={name} cpf={cpf} sessoes={sessoes.title} dia={dia.date} horario={horario} disponivel={disponivel} />} />
         </Routes>
 
 
