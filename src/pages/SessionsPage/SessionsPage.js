@@ -27,8 +27,8 @@ export default function SessionsPage({ sessoes, setSessoes }) {
                 <SessionContainer key={e.id} data-test="movie-day">
                     {e.date}
                     <ButtonsContainer>
-                        <Link data-test="showtime" to={`/lugares/${e.showtimes[0].id}`}><button key={e.showtimes[0].id} >{e.showtimes[0].name}</button> </Link>
-                        <Link data-test="showtime" to={`/lugares/${e.showtimes[1].id}`}><button key={e.showtimes[1].id} >{e.showtimes[1].name}</button> </Link>
+                        <Link data-test="showtime" to={`/assentos/${e.showtimes[0].id}`}><button key={e.showtimes[0].id} >{e.showtimes[0].name}</button> </Link>
+                        <Link data-test="showtime" to={`/assentos/${e.showtimes[1].id}`}><button key={e.showtimes[1].id} >{e.showtimes[1].name}</button> </Link>
                     </ButtonsContainer>
                 </SessionContainer>
 

@@ -36,7 +36,7 @@ export default function SeatsPage({ name, setName, cpf, setCpf, dia, setDia, hor
         }
         const promise = axios.post(url_post, dados)
 
-        promise.then(() => navigate("/finalizar"))
+        promise.then(() => navigate("/sucesso"))
         promise.catch(err => console.log(err))
     }
 

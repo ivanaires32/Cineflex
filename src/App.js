@@ -20,12 +20,12 @@ export default function App() {
 
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/horarios/:idFilme" element={<SessionsPage sessoes={sessoes} setSessoes={setSessoes} />} />
-          <Route path="/lugares/:idSessao" element={<SeatsPage
+          <Route path="/sessoes/:idFilme" element={<SessionsPage sessoes={sessoes} setSessoes={setSessoes} />} />
+          <Route path="/assentos/:idSessao" element={<SeatsPage
             name={name} setName={setName} cpf={cpf} setCpf={setCpf} dia={dia} setDia={setDia} horario={horario} setHorario={setHorario}
             disponivel={disponivel} setDisponivel={setDisponivel}
           />} />
-          <Route path="/finalizar" element={<SuccessPage name={name} cpf={cpf} sessoes={sessoes.title} dia={dia.date} horario={horario} disponivel={disponivel} />} />
+          <Route path="/sucesso" element={<SuccessPage name={name} cpf={cpf} sessoes={sessoes.title} dia={dia.date} horario={horario} disponivel={disponivel} />} />
         </Routes>
 
 
